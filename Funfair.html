@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Aliens</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="shortcut icon" href="logo.png" type="image/x-icon">
+<style>
+       :root {
+           --p-green: #2d6a4f; --s-green: #d8f3dc; --p-pink: #ff8fab;
+           --s-pink: #ffe5ec; --blue: #e0f7fa; --dark: #1b4332; --white: #ffffff;
+       }
+       body { font-family: 'Montserrat', sans-serif; color: var(--dark); margin: 0; overflow-x: hidden; }
+       /* Layout Scaling */
+       section { padding: 70px 10%; text-align: center; }
+       h2 { font-family: 'Archivo Black', sans-serif; font-size: 2.1rem; margin-bottom: 35px; text-transform: uppercase; }
+       .bg-pink { background: var(--s-pink); } .bg-green { background: var(--s-green); }
+       .bg-white { background: var(--white); } .bg-blue {background-color: beige;}
+       /* Hero Styling */
+       .hero { background: linear-gradient(135deg, #d4fc79, #96e6a1); color: rgb(34, 160, 85); padding: 90px 10%; text-align: left; }
+       .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: 3.5rem; line-height: 1.1; }
+       .blob { width: 100%; height: 380px; border-radius: 60% 40% 30% 70%/60% 30% 70% 40%; border: 6px solid white; overflow: hidden; }
+       .blob img { width: 100%; height: 100%; object-fit: cover; }
+       /* Container for the Space section to keep it centered and side-by-side */
+.space-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    
+}
+
+@media (max-width: 992px) {
+    .space-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+/* The wobbly dashed frame for your image */
+.pretty-img-frame {
+   width: 100%;
+   max-width: 400px;
+   height: 400px;
+   /* Custom wobbly shape */
+   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+   border: 6px dashed #2d6a4f; /* Green dashed line */
+   padding: 15px;
+   background: #ffffff;
+   /* This adds the thick pink 'offset' shadow from your goal photo */
+   box-shadow: -15px 15px 0px #ff8fab;
+   background-color: beige;
+}
+@media (max-width: 576px) {
+   .pretty-img-frame {
+       height: 300px;
+   }
+}
+.pretty-img-frame img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   border-radius: inherit;
+}
+
+       /* ORGANISERS */
+.organizers-section{
+   background:var(--soft-green);
+}
+.organizer-card{
+   display:flex;
+   gap:30px;
+   align-items:center;
+   margin-top:50px;
+}
+.organizer-card img{
+   border-radius:20px;
+   width:300px;
+   height:300px;
+   object-fit:cover;
+   box-shadow:10px 10px 0 var(--p-pink);
+}
+.organizer-card .text{
+   flex:1;
+}
+       /* 3D Flip Card Logic */
+       .flip-card { width: 270px; height: 340px; perspective: 1000px; display: inline-block; margin: 10px; }
+       .flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer; }
+       .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+       .f-front, .f-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 25px; padding: 20px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+       .f-front { background: white; border: 4px solid var(--p-pink); }
+       .f-front img { width: 100%; height: 150px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; }
+       .f-back { background: var(--p-green); color: white; transform: rotateY(180deg); padding: 15px; }
+       /* Moving Museum with Pause */
+       .m-container { overflow: hidden; padding: 20px 0; }
+       .m-track { display: flex; gap: 20px; width: max-content; animation: move 35s linear infinite; }
+       .m-track:hover { animation-play-state: paused; cursor: pointer; }
+       .p-box { width: 280px; height: 190px; border-radius: 25px; border: 6px solid white; overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+       @keyframes move { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+       /* ORGANISERS */
+.organizers-section{
+   background-color: rgb(240, 240, 227);
+}
+.organizer-card {
+   display: flex;
+   gap: 30px;
+   align-items: center;
+   margin-top: 50px;
+   flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+   .organizer-card {
+       flex-direction: column;
+       text-align: center;
+   }
+
+   .organizer-card img {
+       width: 220px;
+       height: 220px;
+   }
+}
+.organizer-card img{
+   border-radius:20px;
+   width:300px;
+   height:300px;
+   object-fit:cover;
+   box-shadow:10px 10px 0 var(--p-pink);
+}
+.organizer-card .text{
+   flex:1;
+}
+       /* Tracker & Roles */
+       .don-box { background: white; border: 6px solid var(--p-green); padding: 35px; max-width: 750px; margin: 0 auto; box-shadow: 12px 12px 0 var(--p-pink); border-radius: 30px; }
+       .role-card { background: white; width: 240px; padding: 35px 20px; border-radius: 40px 40px 40px 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+       /* Footer & CTA Box */
+       .green-cta { background: var(--p-green); color: white; padding: 50px 30px; border-radius: 40px; max-width: 850px; margin: 0 auto; }
+       .pink-btn { background: var(--p-pink); color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 900; display: inline-block; margin-top: 15px; transition: 0.3s; border: none; }
+       .pink-btn:hover { background: var(--white); color: var(--p-pink); transform: scale(1.05); }
+       /* Footer */
+       
+          footer {
+      background-color: #F1F8E9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .footer-title {
+      color: #1B5E20;
+    }
+
+    .footer-text {
+      color: #2E7D32;
+    }
+
+    .footer-link {
+      color: #2E7D32;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .footer-link:hover {
+      color: #1B5E20;
+      padding-left: 5px;
+    }
+
+    .dropdown-menu {
+      background-color: #C8E6C9;
+      border: none;
+    }
+
+    .dropdown-item:hover {
+      background-color: #66BB6A;
+      color: white;
+    }
+
+    .footer-logo {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      margin-right: 10px;
+    }
+
+    hr {
+      border-color: #C8E6C9;
+    }
+
+  .navbar{
+    background-color: #fff;
+    height: 80px;
+    margin: 18px;
+    border-radius: 16px;
+    padding: 0.5rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.navbar-brand{
+    font-weight: 500;
+    color: #12d379;
+    font-size: 24px;
+
+}
+.login-button{
+    background-color: #12d379;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.3s background-color;
+}
+.login-button:hover{
+    background-color: #59b688;
+}
+.navbar-toggler{
+    border: none;
+    font-size: 1.25rem;
+}
+.navbar-toggler:focus, .btn-close{
+    box-shadow: none;
+    outline: none;
+}
+.nav-link{
+    color: #666777;
+    font-weight: 500;
+    position: relative;
+}
+.nav-link:hover, .nav-link.active{
+    color: black;
+}
+@media(min-width: 991px){
+    .nav-link::before{
+         content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: #12d379;
+        visibility: hidden;
+        transition: 0.3s ease-in-out;
+    }
+    .nav-link:hover::before, .nav-link.active::before{
+        width: 100%;
+        visibility: visible;
+    }
+
+
+}
+    .why-card {
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      background: #fff;
+    }
+
+    .why-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .why-img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .why-header {
+      padding: 15px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #198754;
+      background: #fff;
+    }
+
+    .why-header:hover {
+      background: #e9f5ec;
+    }
+    
+.service-box{
+    background:#f4f4f4;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.service-box:hover{
+    transform:translateY(-8px);
+}
+
+.service-img{
+    height:180px;
+    object-fit:cover;
+    width:100%;
+}
+
+.service-content{
+    padding:20px;
+}
+
+.service-content h5{
+    font-weight:700;
+}
+
+.info-box{
+    background:#e9e9e9;
+    border-radius:15px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.info-box h6{
+    font-size:14px;
+    font-weight:600;
+    color:#555;
+}
+
+.count-box{
+    text-align:center;
+}
+
+.count-box span{
+    font-weight:700;
+    font-size:18px;
+}
+
+.count-box p{
+    font-size:12px;
+    margin:0;
+    color:#666;
+}
+@media (max-width: 768px) {
+
+  .footer-brand {
+    justify-content: center !important;
+    text-align: center;
+  }
+
+  .footer-brand h5 {
+    text-align: center;
+  }
+
+}
+@media (max-width: 768px) {
+  .hero {
+    text-align: center;
+    padding: 120px 20px 60px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .blob {
+    height: 250px;
+  }
+}
+@media (max-width: 576px) {
+  .flip-card {
+    width: 100%;
+    max-width: 300px;
+    margin: 15px auto;
+  }
+}
+/* ROLE SECTION MOBILE FIX */
+@media (max-width: 768px) {
+
+  .bg-white .row {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .bg-white h2 {
+    font-size: 1.6rem;
+  }
+
+  .bg-white p {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
+
+  .pretty-img-frame {
+    max-width: 280px;
+    height: 260px;
+    margin-bottom: 25px;
+  }
+
+}
+@media (max-width: 576px) {
+  .text-center h2.fw-bold {
+    font-size: 1.6rem;   /* smaller heading */
+  }
+}
+@media (max-width: 768px) {
+  .organizer-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .organizer-card img {
+    width: 200px;
+    height: 200px;
+  }
+
+}
+/* Make Meet the Organisers responsive */
+@media (max-width: 576px) {
+    .mfont {
+        font-size: 1.8rem;  /* smaller font for phones */
+        line-height: 1.2;
+        padding: 0 10px;    /* optional, prevent overflow */
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+    .mfont {
+        font-size: 2.2rem;  /* tablet size */
+        line-height: 1.2;
+    }
+}
+</style>
+</head>
+<body>
+      <nav class="navbar navbar-expand-lg  fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand me-auto d-flex" href="#">
+                    <img src="logo.png" alt="logo" style="width: 60px;">
+                    <h5 class="fw-bold mb-0 footer-title mt-3">Green Aliens</h5>
+                <a>
+                <div class="offcanvas offcanvas-end"  id="offcanvasNavbar">
+                <div class="offcanvas-header">
+                     <div class="d-flex">
+                    <img src="logo.png" alt="logo" style="width: 60px;">
+                    <h5 class="fw-bold mb-0 footer-title mt-3">Green Aliens</h5>
+                  </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                </div>
+                
+                <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link  mx-lg-2" href="index.html">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-2" href="AboutUs.html">About Us</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle mx-lg-2" href="#" role="button" data-bs-toggle="dropdown">
+                                    Activity
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="yoga.html">Yoga Club</a></li>
+                                    <li><a class="dropdown-item" href="activity Zumba1 2.html">Zumba Club</a></li>
+                                    <li><a class="dropdown-item" href="Meditation.html">Meditation</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle mx-lg-2" href="#" role="button" data-bs-toggle="dropdown">
+                                    Event
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="Funfair.html">Fun Fair</a></li>
+                                    <li><a class="dropdown-item" href="food court.html">Food Court</a></li>
+                                    <li><a class="dropdown-item" href="renting2 2.html">Renting</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-2" href="volunteer.html">Volunteer</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-2" href="Schedule.html">Schedule</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link  mx-lg-2" href="Login.html">Log in</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link  mx-lg-2" href="SignUp.html">Sign Up</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-2" href="ContactUs.html">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+<header class="hero">
+  <div class="container">
+    <div class="row align-items-center gy-4 text-center text-lg-start">
+      
+      <div class="col-12 col-lg-7">
+        <h1>Park Revival <br>Funfair.</h1>
+        <p class="fs-5 mt-3">
+          Restoring our green spaces through celebration and community action.
+        </p>
+      </div>
+
+      <div class="col-12 col-lg-5 text-center">
+        <div class="blob mx-auto">
+          <img src="https://media01.nattieontheroad.com/wp-content/uploads/2017/10/30121847/P118-fairride.jpg">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<section class="content-area organizers-section"> <h2 style="text-align:center; font-size:2rem;" class="mfont">Meet the Organisers</h2> <div class="organizer-card"> <img src="logo.png" alt="Team"> <div class="text"> <p>We are the Green Aliens Team — Year-8 students and local residents working together to revitalise our park with creativity, sustainability, and community spirit.</p> <p>Our mission is to turn this funfair into a long-term environmental movement.</p> </div> </div> </section>
+
+<section class="bg-white py-5">
+  <div class="container">
+    <div class="row align-items-center gy-4">
+
+      <div class="col-12 col-lg-6 text-center text-lg-start">
+        <h2 class="mb-3">
+          Role of the Funfair in Local Park Revitalization
+        </h2>
+        <p>
+          A funfair helps bring life back into a park by attracting families,
+          teenagers, and local residents. When more people visit the park,
+          it becomes more active and feels safer.
+        </p>
+      </div>
+
+      <div class="col-12 col-lg-6 text-center">
+        <div class="pretty-img-frame mx-auto">
+          <img src="https://www.sinorides1992.com/wp-content/uploads/2019/10/Sinorides-fun-valley-park-project.jpg">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</section>
+<section class="bg-blue">
+<h2>Available Activities</h2>
+<div class="d-flex justify-content-center flex-wrap">
+<div class="flip-card">
+<div class="flip-inner">
+<div class="f-front"><img src="https://www.oktoberfest.de/sites/default/files/styles/large/public/2025-01/whatsapp_image_2025-01-13_at_15.01.26.jpeg"><h5>Ferris Wheel</h5></div>
+<div class="f-back"><h5></h5><p class="small">Enjoy panoramic views of the fairground from the top!</p></div>
+</div>
+</div>
+<div class="flip-card">
+<div class="flip-inner">
+<div class="f-front"><img src="https://jsparkrides.com/wp-content/uploads/2020/03/Amusement-Park-Carousel-for-Sale.jpg"><h5>Carousel</h5></div>
+<div class="f-back"><h5></h5><p class="small">Classic merry-go-round fun for kids and adults alike.</p></div>
+</div>
+</div>
+<div class="flip-card">
+<div class="flip-inner">
+<div class="f-front"><img src="https://www.shutterstock.com/shutterstock/videos/12118958/thumb/8.jpg?ip=x480"><h5>Bumper Cars</h5></div>
+<div class="f-back"><h5></h5><p class="small">Drive, bump, and have a thrilling experience!</p></div>
+</div>
+</div>
+</div>
+ <div class="text-center mb-5 mt-5">
+      <h2 class="fw-bold">Games & Competitions</h2>
+      <p class="text-muted">Click each photo to discover available games and Competitions</p>
+    </div>
+
+    <div class="row g-4 ">
+      <!-- Card 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="why-card">
+            <img src="https://cdn.connox.com/m/100035/739550/media/Remember/2024/Remember-Ringwurfspiel-Hoop-Situation.webp" class="why-img">
+            <div class="why-header" data-bs-toggle="collapse" data-bs-target="#health">
+                Ring Toss
+            </div>
+            <div class="collapse" id="health">
+                <div class="p-3 text-muted">Test your aim and win exciting prizes!</div>
+            </div>
+            </div>
+        </div>
+
+      <!-- Card 2 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="why-card">
+          <img src="https://static.wixstatic.com/media/11062b_02e9f98430084085b3514d6896ef31fe~mv2.jpg/v1/fill/w_640,h_360,fp_0.50_0.50,q_80,usm_0.66_1.00_0.01,enc_auto/11062b_02e9f98430084085b3514d6896ef31fe~mv2.jpg" class="why-img">
+          <div class="why-header" data-bs-toggle="collapse" data-bs-target="#nature">
+            Dart Balloon Pop
+          </div>
+          <div class="collapse" id="nature">
+            <div class="p-3 text-muted">
+              Pop the balloons with darts and win rewards
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="why-card">
+          <img src="https://s.alicdn.com/@sc04/kf/Hf3b1592ff3bb4889b1ba94abb9c525755/Coin-Operated-Basketball-Arcade-Machine-Electronic-Arcade-Street-Basketball-Machine-Shooting-for-Indoor-Amusement-Center.jpg" class="why-img">
+          <div class="why-header" data-bs-toggle="collapse" data-bs-target="#skills">
+           Basketball Hoop Challenge
+          </div>
+          <div class="collapse" id="skills">
+            <div class="p-3 text-muted">
+            Show your skills by scoring baskets!
+            </div>
+          </div>
+        </div>
+      </div>
+</section>
+<div class="container py-5">
+<div class="row g-4">
+
+    <!-- Entertainment -->
+    <div class="col-12 col-md-6 col-lg-4">
+        <div class="service-box">
+            <img src="https://cdn.digitalagencybangkok.com/file/client-cdn/gnlm/wp-content/uploads/2022/12/DSC_0201-sskm.jpg"
+                 class="service-img">
+            <div class="service-content">
+                <h5>🎟️ Entertainment Services</h5>
+                <p>Game booths, face painting, live music, talent shows and exciting performances for all ages.</p>
+
+                <div class="info-box">
+                    <h6>Popular Activities</h6>
+                    <div class="row mt-3">
+                        <div class="col count-box">
+                            <span>10+</span>
+                            <p>Games</p>
+                        </div>
+                        <div class="col count-box">
+                            <span>5</span>
+                            <p>Shows</p>
+                        </div>
+                        <div class="col count-box">
+                            <span>All</span>
+                            <p>Ages</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Food -->
+    <div class="col-md-4">
+        <div class="service-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0kDhJOfxPIrjgMbeJTh6O_2K-9TvMBwsA8w&s"
+                 class="service-img">
+            <div class="service-content">
+                <h5>🍔 Food & Beverage Services</h5>
+                <p>Hotdogs, burgers, popcorn, cotton candy, ice cream, fresh juices and drinks.</p>
+
+                <div class="info-box">
+                    <h6>Food Options</h6>
+                    <div class="row mt-3">
+                        <div class="col count-box">
+                            <span>15+</span>
+                            <p>Snacks</p>
+                        </div>
+                        <div class="col count-box">
+                            <span>8</span>
+                            <p>Drinks</p>
+                        </div>
+                        <div class="col count-box">
+                            <span>Family</span>
+                            <p>Friendly</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Safety -->
+    <div class="col-md-4">
+        <div class="service-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeG7dLVxOClq_AQ5TOLSumSzhwmaYYDLc4MA&s"
+                 class="service-img">
+            <div class="service-content">
+                <h5>🚑 Safety & Support Services</h5>
+                <p>First aid station, security team, clean restrooms, and recycling management.</p>
+
+                <div class="info-box">
+                    <h6>Support Features</h6>
+                    <div class="row mt-3">
+                        <div class="col count-box">
+                            <span>24/7</span>
+                            <p>First Aid</p>
+                        </div>
+                        <div class="col count-box">
+                            <span>100%</span>
+                            <p>Secure</p>
+                        </div>
+                        <div class="col count-box">
+                            <span>Eco</span>
+                            <p>Friendly</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<!-- ORGANIZERS -->
+
+
+
+<section class="bg-white">
+<div class="green-cta">
+<h2>When we hold fun fair in park?</h2>
+<p class="small"><b>We Only hold fun fair twice in a year in December and June.</b></p>
+
+</div>
+</section>
+<footer class="main-footer">
+<footer class="pt-5 pb-4 mt-5 border-top">
+    <div class="container text-center text-md-start">
+      <div class="row">
+
+        <!-- About Section -->
+        <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-4">
+          <div class="d-flex align-items-center mb-3 footer-brand">
+            <img src="logo.png" alt="Green Aliens Logo" class="footer-logo">
+            <h5 class="fw-bold mb-0 footer-title">Green Aliens</h5>
+          </div>
+          <p class="footer-text">
+            A hub for park activities and positive change. Join events, volunteer your time, and help transform our park into a vibrant space for everyone.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
+          <h6 class="fw-bold mb-3 footer-title">Quick Links</h6>
+
+          <p><a href="index.html" class="footer-link">Home</a></p>
+          <p><a href="AboutUs.html" class="footer-link">About Us</a></p>
+
+          <!-- Activity Dropdown -->
+          <div class="dropdown mb-2">
+            <a class="dropdown-toggle footer-link" href="#" role="button" data-bs-toggle="dropdown">
+              Activity
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="yoga.html">Yoga Club</a></li>
+              <li><a class="dropdown-item" href="activity Zumba1 2.html">Zumba Club</a></li>
+              <li><a class="dropdown-item" href="Meditation.html">Meditation Club</a></li>
+            </ul>
+          </div>
+
+          <!-- Event Dropdown -->
+          <div class="dropdown mb-2">
+            <a class="dropdown-toggle footer-link" href="#" role="button" data-bs-toggle="dropdown">
+              Event
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="Funfair.html">Fun Fair</a></li>
+              <li><a class="dropdown-item" href="food court.html">Food Court</a></li>
+              <li><a class="dropdown-item" href="renting2 2.html">Renting</a></li>
+            </ul>
+          </div>
+
+          
+           <p><a href="volunteer.html" class="footer-link">Volunteer</a></p>
+          <p><a href="Schedule.html" class="footer-link">Schedule</a></p>
+           <p><a href="ICT reference list (1) (1).pdf" class="footer-link">Reference</a></p>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-4">
+          <h6 class="fw-bold mb-3 footer-title">Contact Us</h6>
+
+          <p class="footer-text">
+            <i class="bi bi-geo-alt-fill contact-icon"></i>
+            Yangon, Myanmar
+          </p>
+
+          <p class="footer-text">
+            <i class="bi bi-telephone-fill contact-icon"></i>
+            +95 9 123 456 789
+          </p>
+
+          <p class="footer-text">
+            <i class="bi bi-envelope-fill contact-icon"></i>
+            thealiens@example.com
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <hr class="my-4">
+
+      <!-- Copyright -->
+      <div class="text-center">
+        <small class="footer-text">
+           © 2026 Green Aliens. All Rights Reserved.
+        </small>
+      </div>
+
+    </div>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
